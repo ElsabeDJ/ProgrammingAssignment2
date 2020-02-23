@@ -19,16 +19,19 @@ makeCacheMatrix <- function(x = matrix()) {
        getInverse = getInverse)
 }
 
-
 ## Function to create and inverse of the matrix if it does not already exists.
 
 cacheSolve <- function(x, ...) {
   ## Get the cached value for the inverseMatrix
   inverseMatrix <- x$getInverse()
+  
+  ## If the value for inverseMatrix is cached, retrun the cache value
   if (!is.null(inverseMatrix)) {
     message("Getting the cached data for the inverse of the matrix")
     return(inverseMatrix)
   }
+  
+  ## If the value for inverseMatrix is not cached, calculate the inverse of the matrix and cache the value
   data <- x$get()
   inverseMatrix <- solve(data)
   x$setInverse(inverseMatrix)
